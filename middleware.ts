@@ -78,9 +78,12 @@ export async function middleware(request: NextRequest) {
         console.log("Setting cookie with config:", cookieConfig);
         response.cookies.set("gt_session", username, cookieConfig);
         // Add CORS headers for Amplify environment
-        if (host?.includes('amplifyapp.com')) {
-          response.headers.set('Access-Control-Allow-Credentials', 'true');
-          response.headers.set('Access-Control-Allow-Origin', request.headers.get('origin') || '*');
+        if (host?.includes("amplifyapp.com")) {
+          response.headers.set("Access-Control-Allow-Credentials", "true");
+          response.headers.set(
+            "Access-Control-Allow-Origin",
+            request.headers.get("origin") || "*",
+          );
         }
 
         console.log("Setting cookie and redirecting to:", serviceUrl);

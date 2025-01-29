@@ -12,13 +12,30 @@ interface PrinterStatus {
   target_temps: number[] | null;
 }
 
+const getStateStyles = (state: string) => {
+  const isPrinting = state === "printing";
+  return {
+    container: cn(
+      "p-4 flex justify-between items-center border transition-colors",
+      isPrinting
+        ? "bg-green-50 dark:bg-green-900"
+        : "bg-red-50 dark:bg-red-900",
+    ),
+    status: cn(
+      "text-sm",
+      isPrinting
+        ? "text-green-600 dark:text-green-300"
+        : "text-red-600 dark:text-red-300",
+    ),
+  };
+};
+
 const PrinterStatusListView = () => {
   const [printerStatusData, setPrinterStatusData] = useState<PrinterStatus[]>(
     [],
   );
 
   useEffect(() => {
-    // Fetch the printer status data
     const fetchData = async () => {
       try {
         const response = await fetch("/api/3DPOS/printers");
@@ -31,7 +48,6 @@ const PrinterStatusListView = () => {
         console.error("Error fetching printer status data:", error);
       }
     };
-
     fetchData();
   }, []);
 
@@ -42,38 +58,27 @@ const PrinterStatusListView = () => {
       </CardHeader>
       <CardContent className="max-h-96 overflow-y-auto">
         <div className="grid grid-cols-1 gap-4">
-          {printerStatusData.map((printer) => (
-            <Card
-            key={printer.id}
-            className={cn(
-              "p-4 flex justify-between items-center border",
-              "transition-colors",
-              printer.state === "printing"
-                ? "bg-green-50 dark:bg-green-900"
-                : "bg-red-50 dark:bg-red-900"
-            )}
-          >
-              <div>
-                <p className="text-sm font-medium">
-                  {printer.name} ({printer.type})
-                </p>
-                <p
-                  className={cn(
-                    "text-sm",
-                    printer.state === "printing"
-                      ? "text-green-600 dark:text-green-300"
-                      : "text-red-600 dark:text-red-300"
-                  )}
-                >
-                  {printer.state.charAt(0).toUpperCase() +
-                    printer.state.slice(1)}
-                </p>
-              </div>
-              <div className="text-sm text-muted-foreground">
-                <p>Progress: {printer.percent}%</p>
-              </div>
-            </Card>
-          ))}
+          {printerStatusData.map((printer) => {
+            const styles = getStateStyles(printer.state);
+            const formattedState =
+              printer.state.charAt(0).toUpperCase() + printer.state.slice(1);
+
+            return (
+              <Card key={printer.id} className={styles.container}>
+                <div className="flex-1">
+                  <p className="text-sm font-medium">
+                    {printer.name} ({printer.type})
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    Progress: {printer.percent}%
+                  </p>
+                </div>
+                <div>
+                  <p className={styles.status}>{formattedState}</p>
+                </div>
+              </Card>
+            );
+          })}
         </div>
       </CardContent>
     </Card>
