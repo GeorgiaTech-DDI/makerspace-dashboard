@@ -44,6 +44,7 @@ const PrinterStatusListView = () => {
             <div
               key={printer.id}
               className="bg-white p-2 rounded-lg shadow-md border flex justify-between items-center"
+              style={{ height: '70px' }} // Adjusted row height
             >
               <div>
                 <p className="text-sm font-medium">
