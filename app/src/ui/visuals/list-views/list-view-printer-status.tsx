@@ -39,11 +39,11 @@ const PrinterStatusListView = () => {
         Printer Status
       </h3>
       <div className="max-h-96 overflow-y-auto">
-        <div className="grid grid-cols-1 gap-4">
+        <div className="grid grid-cols-1 gap-2">
           {printerStatusData.map((printer) => (
             <div
               key={printer.id}
-              className="bg-white p-4 rounded-lg shadow-md border flex justify-between items-center"
+              className="bg-white p-2 rounded-lg shadow-md border flex justify-between items-center"
             >
               <div>
                 <p className="text-sm font-medium">
@@ -55,21 +55,9 @@ const PrinterStatusListView = () => {
                   {printer.state.charAt(0).toUpperCase() +
                     printer.state.slice(1)}
                 </p>
-                <p className="text-sm">Progress: {printer.percent}%</p>
               </div>
               <div className="text-sm text-gray-500">
-                <p>
-                  Current Temps:{" "}
-                  {printer.temps && printer.temps.length > 0
-                    ? printer.temps.join("°C, ") + "°C"
-                    : "N/A"}
-                </p>
-                <p>
-                  Target Temps:{" "}
-                  {printer.target_temps && printer.target_temps.length > 0
-                    ? printer.target_temps.join("°C, ") + "°C"
-                    : "N/A"}
-                </p>
+                <p>Progress: {printer.percent}%</p>
               </div>
             </div>
           ))}
