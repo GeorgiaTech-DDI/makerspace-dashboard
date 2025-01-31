@@ -21,7 +21,8 @@ export default function Home() {
                 Georgia Tech Invention Studio Dashboard
               </h1>
               <p className="mt-4 text-lg md:text-xl max-w-2xl">
-                Access real-time data, track attendance, monitor machine usage, and explore insights for the Invention Studio.
+                Access real-time data, track attendance, monitor machine usage,
+                and explore insights for the Invention Studio.
               </p>
             </div>
           </header>
@@ -37,9 +38,14 @@ export default function Home() {
                 </CardHeader>
                 <CardContent className="p-6 text-gray-600">
                   <p>
-                    Access the main dashboard to view analytics and monitor the overall usage of tools and resources within the Invention Studio.
+                    Access the main dashboard to view analytics and monitor the
+                    overall usage of tools and resources within the Invention
+                    Studio.
                   </p>
-                  <Button asChild className="mt-6 w-full bg-primary hover:bg-[#003057] active:bg-[#003057] transform transition duration-200 ease-in-out hover:scale-105">
+                  <Button
+                    asChild
+                    className="mt-6 w-full bg-primary hover:bg-[#003057] active:bg-[#003057] transform transition duration-200 ease-in-out hover:scale-105"
+                  >
                     <Link href="/dashboard">Enter Main Dashboard</Link>
                   </Button>
                 </CardContent>
@@ -53,9 +59,14 @@ export default function Home() {
                 </CardHeader>
                 <CardContent className="p-6 text-gray-600">
                   <p>
-                    Monitor the status of PI devices, manage networked tools, and access data specifically related to the PI network in the studio.
+                    Monitor the status of PI devices, manage networked tools,
+                    and access data specifically related to the PI network in
+                    the studio.
                   </p>
-                  <Button asChild className="mt-6 w-full bg-primary hover:bg-[#003057] active:bg-[#003057] transform transition duration-200 ease-in-out hover:scale-105">
+                  <Button
+                    asChild
+                    className="mt-6 w-full bg-primary hover:bg-[#003057] active:bg-[#003057] transform transition duration-200 ease-in-out hover:scale-105"
+                  >
                     <Link href="/pi">Enter Pi Dashboard</Link>
                   </Button>
                 </CardContent>
@@ -69,10 +80,19 @@ export default function Home() {
                   Learn More About the Invention Studio
                 </h2>
                 <p className="mt-4 text-lg text-gray-600">
-                  The Invention Studio is Georgia Tech’s premier makerspace, where students have free access to a wide range of tools, including 3D printers, laser cutters, and CNC machines, to bring their ideas to life.
+                  The Invention Studio is Georgia Tech’s premier makerspace,
+                  where students have free access to a wide range of tools,
+                  including 3D printers, laser cutters, and CNC machines, to
+                  bring their ideas to life.
                 </p>
-                <Button asChild className="mt-6 w-max bg-primary hover:bg-[#003057] active:bg-[#003057] transform transition duration-200 ease-in-out hover:scale-105">
-                  <Link href="https://inventionstudio.gatech.edu/" target="_blank">
+                <Button
+                  asChild
+                  className="mt-6 w-max bg-primary hover:bg-[#003057] active:bg-[#003057] transform transition duration-200 ease-in-out hover:scale-105"
+                >
+                  <Link
+                    href="https://inventionstudio.gatech.edu/"
+                    target="_blank"
+                  >
                     Visit the Official Website
                   </Link>
                 </Button>
@@ -89,7 +109,9 @@ export default function Home() {
 
           {/* Footer */}
           <footer className="flex justify-center items-center p-4 bg-gray-100 text-gray-500">
-            <p>Designed by Smart<sup>3</sup> Makerspaces</p>
+            <p>
+              Designed by Smart<sup>3</sup> Makerspaces
+            </p>
           </footer>
         </div>
       </div>
