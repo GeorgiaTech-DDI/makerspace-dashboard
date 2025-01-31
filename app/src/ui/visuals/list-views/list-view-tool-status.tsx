@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { useTheme } from "next-themes";
 
 // define the interface (or type) for the tool status data
 // this helps ensure that each tool object has a 'Status' and 'ToolName' field
@@ -16,6 +18,9 @@ const ToolStatusListView = () => {
   // these will help show loading indicators or error messages to the user
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+
+  // dynamic adjustments based on light or dark mode.
+  const { theme } = useTheme();
 
   // useEffect is a hook that lets you run side effects in your component
   // in this case, it fetches data when the component mounts (first renders)
@@ -81,7 +86,7 @@ const ToolStatusListView = () => {
   return (
     <div className="p-4 border rounded-lg shadow">
       {/* the header for the tool status section */}
-      <h3 className="text-lg font-semibold mb-4 sticky top-0 bg-white z-10">
+      <h3 className="text-lg font-semibold mb-4 sticky top-0 bg-background z-10">
         Tool Status
       </h3>
 
@@ -91,23 +96,24 @@ const ToolStatusListView = () => {
         <div className="grid grid-cols-1 gap-4">
           {/* loop over the toolStatusData array and create a "card" for each tool */}
           {toolStatusData.map((tool, index) => (
-            <div
-              key={index} // unique key for each tool to help React optimize rendering
-              className="bg-white p-4 rounded-lg shadow-md border flex justify-between items-center"
-              aria-label={`Tool: ${tool.ToolName}, Status: ${tool.Status}`} // improves accessibility by helping screen readers identify each tool
-            >
-              {/* displaying the tool name and status */}
+            <Card
+            key={index}
+            className="border border-border shadow-lg rounded-xl" // Added border and shadow
+            aria-label={`Tool: ${tool.ToolName}, Status: ${tool.Status}`}
+          >
+            <CardContent className="p-4 flex justify-between items-center">
               <div>
-                <p className="text-sm font-medium">{tool.ToolName}</p>{" "}
-                {/* tool name */}
-                {/* tool status, conditionally setting the text color to green if available, red if not */}
+                <p className="text-sm font-medium">{tool.ToolName}</p>
                 <p
-                  className={`text-sm ${tool.Status.includes("Available") ? "text-green-600" : "text-red-600"}`}
+                  className={`text-sm ${
+                    tool.Status.includes("Available") ? "text-green-600" : "text-red-600"
+                  }`}
                 >
                   {tool.Status}
                 </p>
               </div>
-            </div>
+            </CardContent>
+          </Card>
           ))}
         </div>
       </div>
