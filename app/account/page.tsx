@@ -15,9 +15,10 @@ import Sidebar from "../src/ui/navigation/sidebar";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
 const isProduction = process.env.NODE_ENV === "production";
-const BYPASS_CAS = process.env.NEXT_PUBLIC_BYPASS_CAS !== undefined
-  ? process.env.NEXT_PUBLIC_BYPASS_CAS === "true"
-  : isProduction;
+const BYPASS_CAS =
+  process.env.NEXT_PUBLIC_BYPASS_CAS !== undefined
+    ? process.env.NEXT_PUBLIC_BYPASS_CAS === "true"
+    : isProduction;
 
 const CAS_CONFIG = {
   protocol: "https",

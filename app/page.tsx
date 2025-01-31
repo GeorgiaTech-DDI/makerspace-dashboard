@@ -3,7 +3,9 @@
 import Sidebar from "./src/ui/navigation/sidebar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { TooltipProvider } from "@radix-ui/react-tooltip";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -16,87 +18,101 @@ export default function Home() {
             <div className="absolute inset-0 bg-black opacity-50"></div>
             <div className="relative z-10 flex h-full flex-col justify-center px-8">
               <h1 className="text-4xl font-extrabold md:text-6xl">
-                Georgia Tech Invention Studio
+                Georgia Tech Invention Studio Dashboard
               </h1>
               <p className="mt-4 text-lg md:text-xl max-w-2xl">
-                A student-run makerspace where creativity, innovation, and
-                hands-on learning come to life. Design, prototype, and build
-                your next big idea!
+                Access real-time data, track attendance, monitor machine usage,
+                and explore insights for the Invention Studio.
               </p>
-              <Button className="mt-6 w-max bg-primary hover:bg-primary-dark">
-                Get Started
-              </Button>
             </div>
           </header>
 
           <main className="flex-1 p-6 space-y-8 bg-gray-50">
+            {/* Section: Dashboard Access */}
+            <section className="grid md:grid-cols-2 gap-8">
+              <Card className="bg-white shadow-md rounded-lg backdrop-blur-md backdrop-opacity-80">
+                <CardHeader className="p-4">
+                  <CardTitle className="text-3xl font-semibold text-gray-800">
+                    Main Dashboard
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="p-6 text-gray-600">
+                  <p>
+                    Access the main dashboard to view analytics and monitor the
+                    overall usage of tools and resources within the Invention
+                    Studio.
+                  </p>
+                  <Button
+                    asChild
+                    className="mt-6 w-full bg-primary hover:bg-[#003057] active:bg-[#003057] transform transition duration-200 ease-in-out hover:scale-105"
+                  >
+                    <Link href="/dashboard">Enter Main Dashboard</Link>
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white shadow-md rounded-lg backdrop-blur-md backdrop-opacity-80">
+                <CardHeader className="p-4">
+                  <CardTitle className="text-3xl font-semibold text-gray-800">
+                    PI Dashboard
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="p-6 text-gray-600">
+                  <p>
+                    Monitor the status of PI devices, manage networked tools,
+                    and access data specifically related to the PI network in
+                    the studio.
+                  </p>
+                  <Button
+                    asChild
+                    className="mt-6 w-full bg-primary hover:bg-[#003057] active:bg-[#003057] transform transition duration-200 ease-in-out hover:scale-105"
+                  >
+                    <Link href="/pi">Enter Pi Dashboard</Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            </section>
+
             {/* Section: About the Invention Studio */}
             <section className="grid md:grid-cols-2 gap-8">
               <div className="flex flex-col justify-center">
                 <h2 className="text-3xl font-semibold text-gray-800">
-                  Welcome to the Invention Studio
+                  Learn More About the Invention Studio
                 </h2>
                 <p className="mt-4 text-lg text-gray-600">
                   The Invention Studio is Georgia Tech’s premier makerspace,
-                  providing access to a wide range of tools including 3D
-                  printers, laser cutters, CNC machines, and much more. Students
-                  have free access to these tools to design, prototype, and
-                  create their inventions.
+                  where students have free access to a wide range of tools,
+                  including 3D printers, laser cutters, and CNC machines, to
+                  bring their ideas to life.
                 </p>
+                <Button
+                  asChild
+                  className="mt-6 w-max bg-primary hover:bg-[#003057] active:bg-[#003057] transform transition duration-200 ease-in-out hover:scale-105"
+                >
+                  <Link
+                    href="https://inventionstudio.gatech.edu/"
+                    target="_blank"
+                  >
+                    Visit the Official Website
+                  </Link>
+                </Button>
               </div>
-              <div className="bg-gray-300 h-64 rounded-md">
+              <div className="bg-gray-300 h-64 rounded-md overflow-hidden">
                 <img
                   src="https://lh3.googleusercontent.com/p/AF1QipPtRNRd6901olELv6rrqgd3RlAXjHoljs8Ki_fu=s680-w680-h510"
                   alt="Invention Studio"
-                  className="h-64 w-full object-cover rounded-md"
+                  className="h-64 w-full object-cover rounded-md transform transition duration-500 ease-in-out hover:scale-105 hover:brightness-110"
                 />
               </div>
-            </section>
-
-            {/* Section: Mission Statement */}
-            <section className="grid md:grid-cols-2 gap-8">
-              <div className="bg-gray-300 h-64 rounded-md">
-                <img
-                  src="https://lh3.googleusercontent.com/p/AF1QipOP-sWZXHvlByFalkkMdwqXoQ-UN8fYhknQnWtS=s680-w680-h510"
-                  alt="Invention Studio"
-                  className="h-64 w-full object-cover rounded-md"
-                />
-              </div>
-              <div className="flex flex-col justify-center">
-                <h2 className="text-3xl font-semibold text-gray-800">
-                  Our Mission
-                </h2>
-                <p className="mt-4 text-lg text-gray-600">
-                  Our mission is to inspire and empower students through
-                  hands-on learning, encouraging creativity and collaboration to
-                  turn ideas into reality. The Invention Studio serves as a hub
-                  for innovation at Georgia Tech.
-                </p>
-              </div>
-            </section>
-
-            {/* Section: How to Get Started */}
-            <section className="flex flex-col items-center bg-white shadow-md p-8 rounded-lg">
-              <h2 className="text-3xl font-semibold text-gray-800">
-                How to Get Started
-              </h2>
-              <p className="mt-4 text-lg text-gray-600 max-w-2xl text-center">
-                Getting started at the Invention Studio is simple. Visit our
-                space, attend a safety training session, and get certified to
-                use our tools. From there, you can start bringing your projects
-                to life!
-              </p>
-              <ul className="mt-6 space-y-2 text-lg text-gray-700 list-inside list-disc">
-                <li>Visit the studio in the MRDC building</li>
-                <li>Attend a safety training session</li>
-                <li>Get certified on the tools you want to use</li>
-                <li>Start building your project!</li>
-              </ul>
-              <Button className="mt-6 w-max bg-primary hover:bg-primary-dark">
-                Learn More
-              </Button>
             </section>
           </main>
+
+          {/* Footer */}
+          <footer className="flex justify-center items-center p-4 bg-gray-100 text-gray-500">
+            <p>
+              Designed by Smart<sup>3</sup> Makerspaces
+            </p>
+          </footer>
         </div>
       </div>
     </TooltipProvider>

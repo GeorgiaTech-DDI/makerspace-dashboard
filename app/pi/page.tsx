@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { ModeToggle } from "@/components/ui/mode-toggle";
 
 import Sidebar from "../src/ui/navigation/sidebar";
 import EquipmentUsageCard from "../src/ui/visuals/header-visuals/equipment-usage";
@@ -144,6 +145,7 @@ const PiPage = () => {
               onOrderChange={moveComponent}
               componentRegistry={componentRegistry}
             />
+            <ModeToggle />
           </header>
 
           <main className="flex-1 p-4 space-y-4">
