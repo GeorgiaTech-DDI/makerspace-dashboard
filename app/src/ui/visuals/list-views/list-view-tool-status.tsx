@@ -14,13 +14,13 @@ const getStateStyles = (status: string) => {
       "p-4 flex justify-between items-center border transition-colors",
       isAvailable
         ? "bg-green-50 dark:bg-green-900"
-        : "bg-red-50 dark:bg-red-900"
+        : "bg-red-50 dark:bg-red-900",
     ),
     status: cn(
       "text-sm",
       isAvailable
         ? "text-green-600 dark:text-green-300"
-        : "text-red-600 dark:text-red-300"
+        : "text-red-600 dark:text-red-300",
     ),
   };
 };
@@ -40,30 +40,7 @@ const ToolStatusListView = () => {
           throw new Error("Failed to fetch tool status");
         }
         const data = await response.json();
-        
-        const excludeKeywords = ["[TEST]", "[Test]"];
-        const excludeExactNames = [
-          "EcoMake Login",
-          "Hub Login",
-          "Metal Room Login",
-          "Wood Room Login",
-          "Shift Time Clock",
-          "SUMS Environment",
-          "Request Replacement PI",
-          "Test Inventory Tool",
-          "CAE Helpdesk",
-          "SUMS Environment",
-        ];
-
-        const filteredData = data.filter((tool) => {
-          const hasExcludedKeyword = excludeKeywords.some((keyword) =>
-            tool.ToolName.includes(keyword)
-          );
-          const isExcludedExactName = excludeExactNames.includes(tool.ToolName);
-          return !hasExcludedKeyword && !isExcludedExactName;
-        });
-
-        setToolStatusData(filteredData);
+        setToolStatusData(data);
       } catch (error) {
         console.error("Error fetching tool status data:", error);
         setError("Failed to load tool status. Please try again later.");
@@ -87,7 +64,7 @@ const ToolStatusListView = () => {
           {toolStatusData.map((tool, index) => {
             const styles = getStateStyles(tool.Status);
             return (
-              <Card 
+              <Card
                 key={index}
                 className={styles.container}
                 aria-label={`Tool: ${tool.ToolName}, Status: ${tool.Status}`}

@@ -34,9 +34,13 @@ const PrinterStatusListView = () => {
   const [printerStatusData, setPrinterStatusData] = useState<PrinterStatus[]>(
     [],
   );
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
+      setError(null);
       try {
         const response = await fetch("/api/3DPOS/printers");
         if (!response.ok) {
@@ -46,10 +50,16 @@ const PrinterStatusListView = () => {
         setPrinterStatusData(data);
       } catch (error) {
         console.error("Error fetching printer status data:", error);
+        setError("Failed to load tool status. Please try again later.");
+      } finally {
+        setLoading(false);
       }
     };
     fetchData();
   }, []);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p className="text-red-500">{error}</p>;
 
   return (
     <Card className="p-4">
